@@ -1,18 +1,12 @@
 import { StyleSheet } from 'react-native';
 
-export const loginStyles = StyleSheet.create({
+export const themeStyles = StyleSheet.create({
   formContainer: {
     flex: 1,
     paddingHorizontal: 30,
     justifyContent: 'center',
     height: 600,
     marginBottom: 50,
-  },
-  title: {
-    color: 'white',
-    fontSize: 30,
-    fontWeight: 'bold',
-    marginTop: 20,
   },
   label: {
     marginTop: 25,
@@ -52,5 +46,20 @@ export const loginStyles = StyleSheet.create({
     position: 'absolute',
     top: 60,
     left: 20,
+  },
+  globalMargin: {
+    marginHorizontal: 20,
+  },
+  pokebolaBG: {
+    width: 300,
+    height: 300,
+    position: 'absolute',
+    top: -100,
+    right: -100,
+    opacity: 0.2,
+  },
+  title: {
+    fontSize: 35,
+    fontWeight: 'bold',
   },
 });

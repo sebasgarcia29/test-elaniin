@@ -6,13 +6,23 @@ import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 import { WhiteLogo } from '../../components/WhiteLogo';
 import { Background } from '../../components/Background';
 import { styles } from './styles';
+import useAppNavigation from '../../hooks/useNavigation';
+import { PageName } from '../../navigation/PageName';
+import { themeStyles } from '../../theme/appTheme';
 
 export const LoginScreen = () => {
+  const navigation = useAppNavigation();
+
   const handleGoogleLogin = async () => {
     await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
     const { idToken } = await GoogleSignin.signIn();
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-    return auth().signInWithCredential(googleCredential);
+
+    const response = await auth().signInWithCredential(googleCredential);
+
+    if (response.user.uid) {
+      navigation.navigate(PageName.HomeScreen);
+    }
   };
 
   const handleFacebookLogin = async () => {
@@ -37,6 +47,10 @@ export const LoginScreen = () => {
   return (
     <>
       <Background />
+      <Image
+        source={require('../../assets/pokebola2.png')}
+        style={themeStyles.pokebolaBG}
+      />
 
       <View style={styles.formContainer}>
         <WhiteLogo />

@@ -69,6 +69,18 @@
 					<string>com.googleusercontent.apps.533875748376-io79gcigj8ujacst9a2jilel439ce0pg</string>
 				</array>
 			</dict>
+			<dict>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>1307200186791751</string>
+				</array>
+			</dict>
 		</array>
+		<key>FacebookAppID</key>
+		<string>APP-ID</string>
+		<key>FacebookClientToken</key>
+		<string>CLIENT-TOKEN</string>
+		<key>FacebookDisplayName</key>
+		<string>APP-NAME</string>
 	</dict>
 </plist>
