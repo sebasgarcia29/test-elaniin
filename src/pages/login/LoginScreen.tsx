@@ -39,7 +39,13 @@ export const LoginScreen = () => {
     const facebookCredential = auth.FacebookAuthProvider.credential(
       data.accessToken
     );
-    return auth().signInWithCredential(facebookCredential);
+
+    const response = await auth().signInWithCredential(facebookCredential);
+
+    if (response.user.uid) {
+      navigation.navigate(PageName.HomeScreen);
+    }
+
   };
 
   return (
