@@ -10,11 +10,8 @@ interface Props {
 
 export const PokemonDetails = ({ pokemon }: Props) => {
   return (
-    <ScrollView
-      style={{ ...StyleSheet.absoluteFillObject }}
-      showsVerticalScrollIndicator={false}
-    >
-      <View style={{ ...styles.container, marginTop: 370 }}>
+    <>
+      <View style={{ ...styles.container }}>
         <Text style={styles.title}>{'Types'}</Text>
 
         {/* Container Types and weigt */}
@@ -120,7 +117,7 @@ export const PokemonDetails = ({ pokemon }: Props) => {
           />
         </View>
       </View>
-    </ScrollView>
+    </>
   );
 };
 

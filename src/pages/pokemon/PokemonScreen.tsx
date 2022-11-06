@@ -14,8 +14,9 @@ import { RootStackParams } from '../../navigation/StackNavigator';
 import { FadeInImage, PokemonDetails } from '../../components';
 import { usePokemon, useAppNavigation } from '../../hooks';
 import { styles } from './styles';
+import { ScrollView } from 'react-native-gesture-handler';
 
-interface Props extends StackScreenProps<RootStackParams, 'PokemonScreen'> {}
+interface Props extends StackScreenProps<RootStackParams, 'PokemonScreen'> { }
 
 export const PokemonScreen = ({ route }: Props) => {
   const navigation = useAppNavigation();
@@ -27,42 +28,44 @@ export const PokemonScreen = ({ route }: Props) => {
   const { isLoading, pokemon } = usePokemon(id);
 
   return (
-    <View style={{ flex: 1 }}>
-      {/* Header container */}
-      <View style={{ ...styles.headerContainer, backgroundColor: color }}>
-        <TouchableOpacity
-          activeOpacity={0.4}
-          style={{
-            ...styles.backButton,
-            top: top + 10,
-          }}
-          onPress={() => navigation.goBack()}
-        >
-          <Icon name={'arrow-circle-left'} size={35} color={'white'} />
-        </TouchableOpacity>
+    <ScrollView>
+      <View style={{ flex: 1 }}>
+        {/* Header container */}
+        <View style={{ ...styles.headerContainer, backgroundColor: color }}>
+          <TouchableOpacity
+            activeOpacity={0.4}
+            style={{
+              ...styles.backButton,
+              top: top + 10,
+            }}
+            onPress={() => navigation.goBack()}
+          >
+            <Icon name={'arrow-circle-left'} size={35} color={'white'} />
+          </TouchableOpacity>
 
-        {/* Name Pokemon */}
-        <Text style={{ ...styles.pokemonName, top: top + 45 }}>
-          {name + '\n'} # {id}
-        </Text>
+          {/* Name Pokemon */}
+          <Text style={{ ...styles.pokemonName, top: top + 45 }}>
+            {name + '\n'} # {id}
+          </Text>
 
-        {/* Pokebola Blanca */}
-        <Image
-          source={require('../../assets/pokebola-blanca.png')}
-          style={{ ...styles.pokeball }}
-        />
-        {/* Pokemon Image */}
-        <FadeInImage uri={picture} style={styles.pokemonImage} />
-      </View>
-
-      {/* Detalles y Loading */}
-      {isLoading ? (
-        <View style={{ ...styles.activityIndicator }}>
-          <ActivityIndicator color={color} size={60} />
+          {/* Pokebola Blanca */}
+          <Image
+            source={require('../../assets/pokebola-blanca.png')}
+            style={{ ...styles.pokeball }}
+          />
+          {/* Pokemon Image */}
+          <FadeInImage uri={picture} style={styles.pokemonImage} />
         </View>
-      ) : (
-        <PokemonDetails pokemon={pokemon} />
-      )}
-    </View>
+
+        {/* Detalles y Loading */}
+        {isLoading ? (
+          <View style={{ ...styles.activityIndicator }}>
+            <ActivityIndicator color={color} size={60} />
+          </View>
+        ) : (
+          <PokemonDetails pokemon={pokemon} />
+        )}
+      </View>
+    </ScrollView>
   );
 };
