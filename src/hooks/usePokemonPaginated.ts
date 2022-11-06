@@ -29,7 +29,6 @@ export const usePokemonPaginated = () => {
       const urlParts = url.split('/');
       // const id = urlParts[6];
       const id = urlParts[urlParts.length - 2];
-      console.log(id)
       const picture = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
       return { id, name, picture };
     });

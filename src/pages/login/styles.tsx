@@ -42,4 +42,12 @@ export const styles = StyleSheet.create({
     width: 30,
     height: 30,
   },
+  pokebolaBG: {
+    width: 300,
+    height: 300,
+    position: 'absolute',
+    top: -100,
+    right: -100,
+    opacity: 0.2,
+  },
 });

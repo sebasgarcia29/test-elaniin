@@ -3,12 +3,10 @@ import { View, Image, Text, TouchableOpacity } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
-import { WhiteLogo } from '../../components/WhiteLogo';
-import { Background } from '../../components/Background';
-import { styles } from './styles';
-import useAppNavigation from '../../hooks/useNavigation';
+import { useAppNavigation } from '../../hooks';
+import { WhiteLogo, Background } from '../../components';
 import { PageName } from '../../navigation/PageName';
-import { themeStyles } from '../../theme/appTheme';
+import { styles } from './styles';
 
 export const LoginScreen = () => {
   const navigation = useAppNavigation();
@@ -49,7 +47,7 @@ export const LoginScreen = () => {
       <Background />
       <Image
         source={require('../../assets/pokebola2.png')}
-        style={themeStyles.pokebolaBG}
+        style={styles.pokebolaBG}
       />
 
       <View style={styles.formContainer}>

@@ -1,11 +1,10 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { Image, View, FlatList, ActivityIndicator } from 'react-native';
+import { Image, View, FlatList, ActivityIndicator, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { usePokemonPaginated } from '../../hooks/usePokemonPaginated';
-// import Icon from 'react-native-vector-icons/FontAwesome';
-import { PokemonCard } from '../../components/PokemonCard';
-import { Text } from 'react-native';
-import { themeStyles } from '../../theme/appTheme';
+import { PokemonCard } from '../../components';
+import { styles } from './styles';
 
 export const HomeScreen = () => {
   const { top } = useSafeAreaInsets();
@@ -15,10 +14,10 @@ export const HomeScreen = () => {
     <View>
       <Image
         source={require('../../assets/pokebola2.png')}
-        style={themeStyles.pokebolaBG}
+        style={styles.pokebolaBG}
       />
 
-      <View style={{ alignItems: 'center' }}>
+      <View style={styles.container}>
         <FlatList
           data={simplePokemonList}
           keyExtractor={(pokemon) => pokemon.id}
@@ -38,8 +37,8 @@ export const HomeScreen = () => {
           ListHeaderComponent={() => (
             <Text
               style={{
-                ...themeStyles.title,
-                ...themeStyles.globalMargin,
+                ...styles.title,
+                ...styles.globalMargin,
                 top: top + 20,
                 marginBottom: top + 20,
                 paddingBottom: 10,
