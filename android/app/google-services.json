@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "533875748376",
+    "project_id": "elaniin-406b3",
+    "storage_bucket": "elaniin-406b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533875748376:android:7aadfb47e52a1555e39d6d",
+        "android_client_info": {
+          "package_name": "com.test_elaniin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "533875748376-d4bqa7ucmitib97nhhlv6vcrukcicf5p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.test_elaniin",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "533875748376-9b2gh33npj90vktb18rjuhckbft0qjln.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUNo6pj6Vhvjiknuj8vIneDaPdX6c5iXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "533875748376-9b2gh33npj90vktb18rjuhckbft0qjln.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
