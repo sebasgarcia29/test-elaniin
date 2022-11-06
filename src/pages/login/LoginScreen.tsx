@@ -1,110 +1,66 @@
 import React from 'react';
-import { Background } from '../../components/Background';
-import {
-  View,
-  Text,
-  TextInput,
-  Platform,
-  KeyboardAvoidingView,
-} from 'react-native';
+import { View, Image, Text, TouchableOpacity } from 'react-native';
+import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 import { WhiteLogo } from '../../components/WhiteLogo';
-import { loginStyles } from '../../theme/loginTheme';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useForm } from '../../hooks/useForm';
-import { StackScreenProps } from '@react-navigation/stack';
+import { Background } from '../../components/Background';
+import { styles } from './styles';
 
-interface Props extends StackScreenProps<any, any> {}
-
-export const LoginScreen = ({ navigation }: Props) => {
-  const initialState = {
-    email: '', //test1@test.com
-    password: '', //123456
+export const LoginScreen = () => {
+  const handleGoogleLogin = async () => {
+    await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
+    const { idToken } = await GoogleSignin.signIn();
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+    return auth().signInWithCredential(googleCredential);
   };
 
-  const { email, password, onChange } = useForm(initialState);
+  const handleFacebookLogin = async () => {
+    const result = await LoginManager.logInWithPermissions([
+      'public_profile',
+      'email',
+    ]);
 
-  const onLogin = () => {
-    console.log('onLogin');
+    if (result.isCancelled) {
+      throw 'User cancelled the login process';
+    }
+    const data = await AccessToken.getCurrentAccessToken();
+    if (!data) {
+      throw 'Something went wrong obtaining access token';
+    }
+    const facebookCredential = auth.FacebookAuthProvider.credential(
+      data.accessToken
+    );
+    return auth().signInWithCredential(facebookCredential);
   };
 
   return (
     <>
       <Background />
 
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      >
-        <View style={loginStyles.formContainer}>
-          <WhiteLogo />
-          <Text style={loginStyles.title}>Login</Text>
-          <Text style={loginStyles.label}>Email: </Text>
-          <TextInput
-            placeholder={'Ingresar email'}
-            placeholderTextColor={'rgba(255,255,255,0.4)'}
-            keyboardType={'email-address'}
-            underlineColorAndroid={'white'}
-            style={[
-              loginStyles.inputField,
-              Platform.OS === 'ios' && loginStyles.inputFieldIos,
-            ]}
-            selectionColor={'#da8943'}
-            autoCapitalize={'none'}
-            autoCorrect={false}
-            onChangeText={(value) => onChange(value, 'email')}
-            value={email}
-            onSubmitEditing={onLogin}
-          />
-          <Text style={loginStyles.label}>Password: </Text>
-          <TextInput
-            placeholder={'******'}
-            placeholderTextColor={'rgba(255,255,255,0.4)'}
-            underlineColorAndroid={'white'}
-            style={[
-              loginStyles.inputField,
-              Platform.OS === 'ios' && loginStyles.inputFieldIos,
-            ]}
-            selectionColor={'#da8943'}
-            autoCapitalize={'none'}
-            autoCorrect={false}
-            onChangeText={(value) => onChange(value, 'password')}
-            value={password}
-            onSubmitEditing={onLogin}
-            secureTextEntry={true}
-          />
-
-          {/* Boton Login */}
-
-          <View style={loginStyles.buttonContainer}>
-            <TouchableOpacity
-              activeOpacity={0.4}
-              style={loginStyles.button}
-              onPress={onLogin}
-            >
-              <Text style={loginStyles.buttonText}>Login</Text>
-            </TouchableOpacity>
+      <View style={styles.formContainer}>
+        <WhiteLogo />
+      </View>
+      <View style={styles.formContainer}>
+        <TouchableOpacity onPress={handleFacebookLogin}>
+          <View style={styles.containerFacebook}>
+            <Image
+              source={require('../../assets/iconFacebook.png')}
+              style={styles.img}
+            />
+            <Text style={styles.textFacebook}>{'Login with Facebook'}</Text>
           </View>
-
-          {/* Crear Cuenta */}
-
-          <View style={loginStyles.newUserContainer}>
-            <TouchableOpacity
-              activeOpacity={0.4}
-              onPress={() => navigation.replace('RegisterScreen')}
-            >
-              <Text
-                style={{
-                  ...loginStyles.buttonText,
-                  color: '#f4d580',
-                  fontWeight: '500',
-                }}
-              >
-                Nueva cuenta
-              </Text>
-            </TouchableOpacity>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleGoogleLogin}>
+          <View style={styles.containerGoogle}>
+            <Image
+              source={require('../../assets/iconGoogle.png')}
+              style={styles.img}
+            />
+            <Text style={styles.textGoogle}>{'Login with Facebook'}</Text>
           </View>
-        </View>
-      </KeyboardAvoidingView>
+        </TouchableOpacity>
+      </View>
     </>
   );
 };

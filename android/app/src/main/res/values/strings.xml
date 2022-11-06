@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">test_elaniin</string>
+    <string name="facebook_app_id">1307200186791751</string>
+    <string name="facebook_client_token">a53388d5f5573e772c10c1ff1b6b3ec8</string>
 </resources>
