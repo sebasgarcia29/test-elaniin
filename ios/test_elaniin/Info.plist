@@ -72,16 +72,25 @@
 			<dict>
 				<key>CFBundleURLSchemes</key>
 				<array>
-					<string>1307200186791751</string>
+					<string>fb1307200186791751</string>
 				</array>
 			</dict>
 		</array>
+
 		<key>FacebookAppID</key>
-		<string>APP-ID</string>
+		<string>1307200186791751</string>
 		<key>FacebookClientToken</key>
-		<string>CLIENT-TOKEN</string>
+		<string>a53388d5f5573e772c10c1ff1b6b3ec8</string>
 		<key>FacebookDisplayName</key>
-		<string>APP-NAME</string>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>fbapi</string>
+			<string>fb-messenger-share-api</string>
+			<string>fbauth2</string>
+			<string>fbshareextension</string>
+		</array>
+
 		<key>UIAppFonts</key>
 		<array>
 			<string>AntDesign.ttf</string>
